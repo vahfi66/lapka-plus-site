@@ -21,11 +21,12 @@ if (form && fields && status) {
   function show() {
     fields.disabled = !!saved;
     cancel.hidden = !saved;
-    status.textContent = saved ? 'Заявка отправлена администратору в Telegram.' : 'Выберите удобные дату и время.';
+    status.hidden = !saved;
+    status.textContent = saved ? 'Заявка отправлена администратору в Telegram.' : '';
   }
   cancel.addEventListener('click', () => {
-    try { localStorage.removeItem(storageKey); saved = null; show(); status.textContent = 'Заявка отозвана у администратора в Telegram. Время снова доступно.'; }
-    catch { status.textContent = 'Не удалось отозвать запись. Проверьте настройки браузера.'; }
+    try { localStorage.removeItem(storageKey); saved = null; show(); status.hidden = false; status.textContent = 'Заявка отозвана у администратора в Telegram. Время снова доступно.'; }
+    catch { status.hidden = false; status.textContent = 'Не удалось отозвать запись. Проверьте настройки браузера.'; }
   });
   form.addEventListener('submit', event => {
     event.preventDefault();
