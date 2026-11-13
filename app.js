@@ -14,14 +14,12 @@ const fields = form?.querySelector('fieldset');
 const button = form?.querySelector('button[type=submit]');
 let requestId = null;
 const api = 'https://lapka-plus-booking.netlify.app/api';
-const storageKey = 'lapka-booking-v1';
-let saved;
-try {
-  saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
-  if (!saved?.visitor) saved = {visitor: crypto.randomUUID(), id: null};
-  localStorage.setItem(storageKey, JSON.stringify(saved));
-} catch { saved = null; }
-const persist = () => localStorage.setItem(storageKey, JSON.stringify(saved));
+let credential = null;
+let activeId = null;
+const signIn = document.createElement('div');
+signIn.className = 'google-signin';
+form?.before(signIn);
+const authHeaders = () => ({'content-type':'application/json', authorization:`Bearer ${credential}`});
 const cancelButton = document.createElement('button');
 cancelButton.type = 'button';
 cancelButton.className = 'button button-secondary';
@@ -29,27 +27,26 @@ cancelButton.textContent = 'Отозвать заявку';
 cancelButton.hidden = true;
 form?.after(cancelButton);
 async function syncApplication() {
-  if (!saved?.id) return false;
-  const response = await fetch(`${api}/mine`, {method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(saved)});
+  const response = await fetch(`${api}/mine`, {method:'POST',headers:authHeaders(),body:'{}'});
   if (!response.ok) throw new Error();
-  const {state} = await response.json();
+  const {state,id} = await response.json();
+  activeId = id;
   if (['pending','sent','approved'].includes(state)) {
     fields.disabled = true;
     cancelButton.hidden = state === 'pending';
     status.textContent = state === 'pending' ? 'Статус заявки уточняется. Обратитесь в клинику, если он долго не меняется.' : state === 'approved' ? 'Заявка принята администратором.' : 'Заявка доставлена администратору. Ожидайте подтверждения.';
     return true;
   }
-  saved.id = null; persist();
-  if (state === 'rejected') status.textContent = 'Заявка отклонена. Вы можете выбрать другое время.';
   return false;
 }
 cancelButton.addEventListener('click', async () => {
   cancelButton.disabled = true;
   try {
-    const response = await fetch(`${api}/cancel`, {method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(saved)});
+    const response = await fetch(`${api}/cancel`, {method:'POST',headers:authHeaders(),body:JSON.stringify({id:activeId})});
     const result = await response.json();
+    if (response.status === 401) { credential=null; signIn.hidden=false; cancelButton.hidden=true; status.textContent='Войдите в Google ещё раз, чтобы отозвать заявку.'; return; }
     if (!response.ok) throw new Error(result.error);
-    saved.id = null; persist(); cancelButton.hidden = true; fields.disabled = false;
+    activeId = null; cancelButton.hidden = true; fields.disabled = false;
     status.textContent = result.notified ? 'Заявка отозвана, время снова свободно. Администратор уведомлён.' : 'Заявка отозвана, время свободно. Уведомление администратору будет отправлено повторно.';
   } catch (error) { status.textContent = error.message || 'Не удалось отозвать заявку. Попробуйте ещё раз.'; }
   finally { cancelButton.disabled = false; }
@@ -75,10 +72,23 @@ timeInput?.addEventListener('change', checkAvailability);
 if (form) {
   fetch(`${api}/status`, { cache: 'no-store' }).then(r => r.ok ? r.json() : null).then(async result => {
     if (!result?.ready) return;
-    if (!saved) { status.textContent = 'Для записи разрешите сохранение данных сайта в браузере.'; return; }
-    if (await syncApplication()) return;
-    fields.disabled = false;
-    status.textContent = 'Заявка будет отправлена администратору. Это ещё не подтверждённая запись.';
+    status.textContent = 'Войдите через Google, чтобы записаться и управлять заявкой.';
+    const script = document.createElement('script');
+    script.src = 'https://accounts.google.com/gsi/client';
+    script.async = true;
+    script.onerror = () => { status.textContent = 'Не удалось загрузить вход через Google. Попробуйте позже.'; };
+    script.onload = () => {
+      google.accounts.id.initialize({client_id:result.googleClientId, callback:async response => {
+        credential = response.credential; signIn.hidden = true;
+        try {
+          if (await syncApplication()) return;
+          fields.disabled = false;
+          status.textContent = 'Заявка будет отправлена администратору. Это ещё не подтверждённая запись.';
+        } catch { credential=null; signIn.hidden=false; status.textContent='Не удалось проверить заявку. Войдите ещё раз.'; }
+      }});
+      google.accounts.id.renderButton(signIn,{theme:'outline',size:'large',text:'signin_with',locale:'ru'});
+    };
+    document.head.append(script);
   }).catch(() => { status.textContent = 'Не удалось проверить состояние заявки. Попробуйте обновить страницу.'; });
   form.addEventListener('submit', async event => {
     event.preventDefault();
@@ -88,24 +98,21 @@ if (form) {
     const values = Object.fromEntries(new FormData(form));
     values.consent = values.consent === 'on';
     values.id = requestId ||= crypto.randomUUID();
-    values.visitor = saved.visitor;
     values.note ||= '';
-    saved.id = values.id;
-    try { persist(); } catch { status.textContent = 'Не удалось сохранить состояние заявки в браузере.'; return; }
     button.disabled = true;
     button.textContent = 'Отправляем…';
     status.textContent = 'Отправляем заявку…';
     try {
-      const response = await fetch(`${api}/appointment`, { method:'POST', headers:{'content-type':'application/json'}, body:JSON.stringify(values) });
+      const response = await fetch(`${api}/appointment`, { method:'POST', headers:authHeaders(), body:JSON.stringify(values) });
       const result = await response.json();
       if (response.ok && result.ok) {
-        form.reset(); requestId = null; fields.disabled = true; cancelButton.hidden = false;
+        activeId = values.id; form.reset(); requestId = null; fields.disabled = true; cancelButton.hidden = false;
         status.textContent = 'Заявка доставлена администратору. Это ещё не подтверждённая запись.';
       } else {
         status.textContent = result.error || 'Не удалось отправить заявку. Попробуйте позже.';
-        if (result.active && result.id) { saved.id = result.id; persist(); await syncApplication(); return; }
+        if (result.active && result.id) { activeId = result.id; await syncApplication(); return; }
+        if (response.status === 401) { credential=null; signIn.hidden=false; fields.disabled=true; return; }
         if ((response.status === 409 && !result.conflict) || (response.status >= 500 && !result.retry)) { fields.disabled = true; return; }
-        saved.id = null; persist();
         requestId = null;
       }
     } catch {

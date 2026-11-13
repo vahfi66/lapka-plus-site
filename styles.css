@@ -11,3 +11,4 @@
 /* Тонкие акценты на карточках и этапах приёма. */
 .service-card,.doctor-card{border-color:#d79b7d}.steps>div{border-top-color:#d79b7d}.steps>div:last-child{border-bottom-color:#d79b7d}
 .button[hidden]{display:none}
+.google-signin:not([hidden]){margin:0 0 20px}
