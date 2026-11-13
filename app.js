@@ -21,10 +21,10 @@ if (form && fields && status) {
   function show() {
     fields.disabled = !!saved;
     cancel.hidden = !saved;
-    status.textContent = saved ? 'Демонстрационная запись прошла успешно. Время сохранено в этом браузере.' : 'Демонстрационная запись сохраняется только в вашем браузере.';
+    status.textContent = saved ? 'Заявка сохранена в этом браузере.' : 'Демонстрационная запись сохраняется только в вашем браузере.';
   }
   cancel.addEventListener('click', () => {
-    try { localStorage.removeItem(storageKey); saved = null; show(); status.textContent = 'Демонстрационная запись отозвана. Время снова доступно.'; }
+    try { localStorage.removeItem(storageKey); saved = null; show(); status.textContent = 'Заявка отозвана. Время снова доступно.'; }
     catch { status.textContent = 'Не удалось отозвать запись. Проверьте настройки браузера.'; }
   });
   form.addEventListener('submit', event => {
