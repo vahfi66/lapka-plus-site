@@ -50,7 +50,7 @@ cancelButton.addEventListener('click', async () => {
     const result = await response.json();
     if (!response.ok) throw new Error(result.error);
     saved.id = null; persist(); cancelButton.hidden = true; fields.disabled = false;
-    status.textContent = result.notified ? 'Заявка отозвана, время снова свободно. Администратор уведомлён.' : 'Заявка отозвана, время свободно. Не удалось уведомить администратора.';
+    status.textContent = result.notified ? 'Заявка отозвана, время снова свободно. Администратор уведомлён.' : 'Заявка отозвана, время свободно. Уведомление администратору будет отправлено повторно.';
   } catch (error) { status.textContent = error.message || 'Не удалось отозвать заявку. Попробуйте ещё раз.'; }
   finally { cancelButton.disabled = false; }
 });
