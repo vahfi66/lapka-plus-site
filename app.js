@@ -1,8 +1,16 @@
 const header = document.querySelector('.site-header');
-if (header) {
-  const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
-  updateHeader();
-  window.addEventListener('scroll', updateHeader, { passive: true });
+const heroPhoto = document.querySelector('.hero-stage .opening-photo');
+
+if (header && heroPhoto) {
+  const photoStrip = document.createElement('div');
+  photoStrip.className = 'header-photo-strip';
+  photoStrip.append(heroPhoto.cloneNode(true));
+  const matchHeroHeight = () => {
+    photoStrip.style.setProperty('--hero-photo-height', `${heroPhoto.getBoundingClientRect().height}px`);
+  };
+  matchHeroHeight();
+  header.prepend(photoStrip);
+  new ResizeObserver(matchHeroHeight).observe(heroPhoto);
 }
 
 const toggle = document.querySelector('.menu-toggle');

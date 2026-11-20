@@ -16,19 +16,43 @@ html {
   border-bottom: 0;
 }
 
-.site-header::before {
-  content: "";
+.opening-photo {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(#1a100b60, #1a100b60),
-    url("assets/hero-dog-desktop.webp") left center / 260% auto no-repeat #29221e;
-  opacity: 0;
+  isolation: isolate;
+  background: var(--cocoa);
   pointer-events: none;
-  transition: opacity 200ms ease;
 }
 
-.site-header.is-scrolled::before { opacity: 1; }
+.opening-photo .image { position: absolute; inset: 0; }
+
+.opening-photo .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 100% 48%;
+}
+
+.opening-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #150d0866, transparent 68%);
+}
+
+.header-photo-strip {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.header-photo-strip .opening-photo {
+  bottom: auto;
+  height: var(--hero-photo-height, 100svh);
+}
 
 @media (max-width: 940px) {
   .home .site-header { padding-inline: 32px; }
@@ -55,9 +79,6 @@ html {
 }
 
 .hero-stage { color: #fff8ed; }
-.hero-stage .image { inset: 0; }
-.hero-stage .image img { object-position: 100% 48%; }
-.hero-stage::before { background: linear-gradient(90deg, #150d0866, transparent 68%); }
 .hero-stage .hero { align-items: end; }
 .hero-stage .copy { padding-block: 44px clamp(60px, 11vh, 116px); }
 
@@ -106,9 +127,8 @@ html {
 }
 
 @media (max-width: 680px) {
-  .site-header::before { background-image: linear-gradient(#1a100b60, #1a100b60), url("assets/hero-dog-mobile.webp"); background-position: left 88%; }
-  .hero-stage .image img { object-position: 76% 0; }
-  .hero-stage::before {
+  .opening-photo .image img { object-position: 76% 0; }
+  .opening-photo::after {
     background: linear-gradient(180deg, #170e0880, transparent 15% 46%, #170e084d 68%, #170e0873);
   }
 
