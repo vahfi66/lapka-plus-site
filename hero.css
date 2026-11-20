@@ -41,13 +41,23 @@ html {
   background: linear-gradient(90deg, #150d0866, transparent 68%);
 }
 
-.site-header::before {
+.site-header::before,
+.site-header::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: 0 0 auto;
+  height: calc(100% + 42px);
   z-index: -1;
   pointer-events: none;
-  background: var(--cocoa);
+}
+
+.site-header::before {
+  background: linear-gradient(180deg, #1b120e40, #1b120e24 40%, transparent 100%);
+}
+
+.site-header::after {
+  background: linear-gradient(180deg,
+    #29221ecc 0%, #29221eb3 40%, #29221e59 66%, transparent 100%);
   opacity: var(--header-fill, 0);
   transition: opacity 340ms cubic-bezier(.4, 0, .2, 1);
 }
@@ -132,7 +142,7 @@ html {
 @media (max-width: 680px) {
   .opening-photo .image img { object-position: 76% 0; }
   .opening-photo::after {
-    background: linear-gradient(180deg, #170e0880, transparent 15% 46%, #170e084d 68%, #170e0873);
+    background: linear-gradient(180deg, transparent 46%, #170e084d 68%, #170e0873);
   }
 
   .hero-stage .copy { padding-block: clamp(180px, 42svh, 420px) max(24px, env(safe-area-inset-bottom)); }
