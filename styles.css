@@ -511,7 +511,11 @@ body { background: var(--page); font-family: var(--body-font); }
   .menu-drawer[open], .doctor-profile[open] { opacity: 0; transform: var(--dialog-offset); }
   .menu-drawer[open]::backdrop, .doctor-profile[open]::backdrop { background: transparent; }
 }
-body:has(.menu-drawer[open], .doctor-profile[open]) { overflow: hidden; }
+html { scrollbar-gutter: stable; }
+html:has(.menu-drawer[open], .doctor-profile[open]) {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
 .dialog-close-form { position: absolute; top: 10px; right: 10px; z-index: 1; margin: 0; }
 .dialog-close {
   position: relative;
@@ -557,6 +561,7 @@ body:has(.menu-drawer[open], .doctor-profile[open]) { overflow: hidden; }
   --dialog-speed: 220ms;
   --dialog-open-speed: 340ms;
   --dialog-offset: translateX(100%);
+  position: fixed;
   max-width: none;
   max-height: none;
   width: min(380px, calc(100% - 30px));
