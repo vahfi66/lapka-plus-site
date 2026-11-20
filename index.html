@@ -5,7 +5,7 @@
   <meta name="description" content="Лапка плюс — демонстрационный сайт ветеринарной клиники для кошек и собак.">
   <meta name="page-type" content="service"><meta name="site-kind" content="other"><title>Лапка плюс — ветеринарная клиника</title>
   <link rel="icon" href="assets/paw-mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="fonts.css"><link rel="stylesheet" href="styles.css?v=7"><script src="app.js?v=6" defer></script>
+  <link rel="stylesheet" href="fonts.css"><link rel="stylesheet" href="styles.css?v=8"><script src="app.js?v=7" defer></script>
 </head>
 <body class="home final-design" id="top">
 <a class="skip" href="#main">Перейти к содержанию</a>
@@ -13,8 +13,14 @@
   <a class="brand" href="#top" aria-label="Лапка плюс — на главную"><img class="brand-mark" src="assets/paw-mark.svg" width="30" height="30" alt=""><span>лапка плюс</span></a>
   <nav class="nav" aria-label="Основная навигация"><a href="#doctors">Врачи</a><a href="#services">Услуги и цены</a><a href="#reviews">Отзывы</a></nav>
   <a class="header-action" href="#contacts">Контакты</a>
-  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav"><span aria-hidden="true"></span><span aria-hidden="true"></span><span class="sr-only">Меню</span></button>
-  <nav class="mobile-nav" id="mobile-nav" aria-label="Мобильная навигация" inert><a href="#doctors">Врачи</a><a href="#services">Услуги и цены</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a><a href="#appointment">Записаться</a></nav>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-haspopup="dialog"><span aria-hidden="true"></span><span aria-hidden="true"></span><span class="sr-only">Меню</span></button>
+  <dialog class="menu-drawer" id="mobile-nav" aria-labelledby="mobile-menu-title">
+    <div class="menu-drawer-content">
+      <form method="dialog" class="dialog-close-form"><button type="submit" class="dialog-close" aria-label="Закрыть"></button></form>
+      <h2 id="mobile-menu-title">Меню</h2>
+      <nav aria-label="Мобильная навигация"><a href="#doctors">Врачи</a><a href="#services">Услуги и цены</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a><a href="#appointment">Записаться</a></nav>
+    </div>
+  </dialog>
 </header>
 <main id="main">
 <section class="hero-stage" aria-labelledby="hero-title"><div class="hero wrap">
@@ -22,7 +28,7 @@
 <h1 id="hero-title"><span>Ему легче,</span> <span>вам спокойней</span></h1><p class="lead">Принимаем кошек и собак. Внимательно осмотрим питомца, подберём лечение и расскажем, по каким признакам вы заметите улучшение.</p>
 <div class="actions"><a class="action primary" href="#appointment">Записаться</a><a class="action secondary" href="#emergency">Срочная помощь</a></div></div>
 </div></section>
-<section id="doctors" class="concept-block team"><div class="editorial-wrap"><header class="concept-heading"><div><p class="eyebrow">КОМАНДА</p><h2>Врачи клиники</h2></div><p>Специалисты клиники и направления их работы.</p></header>
+<section id="doctors" class="concept-block team"><div class="editorial-wrap"><header class="concept-heading"><div><p class="eyebrow">ВРАЧИ</p><h2>Врачи клиники</h2></div><p>Специалисты клиники и направления их работы.</p></header>
 <div class="team-layout">
  <article class="doctor-card featured-doctor"><div class="portrait"><img src="assets/vet-anna.jpg" alt="" loading="lazy"></div><div class="doctor-info"><span>ТЕРАПЕВТ</span><h3>Анна Миронова</h3><p>Первичный приём и профилактика.</p><button type="button" class="doctor-trigger" aria-haspopup="dialog" aria-label="О враче: Анна Миронова" data-profile="anna">О враче</button></div></article>
  <article class="doctor-card"><div class="portrait"><img src="assets/vet-maria.jpg" alt="" loading="lazy"></div><div class="doctor-info"><span>ВРАЧ ДИАГНОСТИКИ</span><h3>Мария Лебедева</h3><p>УЗИ и диагностические обследования.</p><button type="button" class="doctor-trigger" aria-haspopup="dialog" aria-label="О враче: Мария Лебедева" data-profile="maria">О враче</button></div></article>
@@ -42,7 +48,7 @@
   <div class="visit-content"><header class="concept-heading stacked"><p class="eyebrow">ПРИЁМ В КЛИНИКЕ</p><h2>План приёма у ветеринара</h2><p class="approach-lead">На приёме важно не только осмотреть животное, но и ответить на вопросы его владельца.</p></header><div class="steps"><div><span>01</span><div><h3>Выслушаем</h3><p>Обсудим самочувствие питомца и причину обращения.</p></div></div><div><span>02</span><div><h3>Осмотрим</h3><p>Проведём осмотр и при необходимости предложим обследование.</p></div></div><div><span>03</span><div><h3>Объясним</h3><p>Расскажем о результатах и дальнейших шагах.</p></div></div></div></div>
 </div></div></section>
 <section id="reviews" class="concept-block quote-chapter"><div class="editorial-wrap">
-<header class="concept-heading"><div><p class="eyebrow">ОТЗЫВЫ</p><h2>Истории владельцев</h2></div><p>Отзывы владельцев наших пациентов.</p></header>
+<header class="concept-heading"><div><h2>Истории владельцев</h2></div><p>Отзывы владельцев наших пациентов.</p></header>
 <div class="review-carousel" aria-label="Отзывы владельцев"><div class="review-deck" aria-live="polite"><article class="review-slide"><div class="review-stars" aria-label="5 из 5 звёзд">★★★★★</div><blockquote>«На приёме всё подробно объяснили и помогли разобраться, что делать дальше. Мы с Мусей ушли спокойнее.»</blockquote><p><strong>Екатерина</strong><br>владелица кошки Муси</p></article><article class="review-slide" hidden><div class="review-stars" aria-label="5 из 5 звёзд">★★★★★</div><blockquote>«К нашему псу отнеслись бережно. На все вопросы ответили просто и без спешки.»</blockquote><p><strong>Алексей</strong><br>владелец пса Марса</p></article><article class="review-slide" hidden><div class="review-stars" aria-label="5 из 5 звёзд">★★★★★</div><blockquote>«Перед первой прививкой рассказали, как подготовиться и чего ожидать после приёма.»</blockquote><p><strong>Ольга</strong><br>владелица кошки Тоси</p></article></div><div class="review-controls"><button type="button" class="review-arrow review-prev" aria-label="Предыдущий отзыв"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4m7 7-7-7 7-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="review-dots"><button type="button" class="review-dot" data-review="0" aria-label="Отзыв 1" aria-current="true"></button><button type="button" class="review-dot" data-review="1" aria-label="Отзыв 2" aria-current="false"></button><button type="button" class="review-dot" data-review="2" aria-label="Отзыв 3" aria-current="false"></button></div><button type="button" class="review-arrow review-next" aria-label="Следующий отзыв"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4m7 7-7-7 7-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div></div></section>
 <section class="concept-block urgent-chapter" id="emergency"><div class="editorial-wrap urgent-wrap"><div class="urgent-frame">
  <div><h2>Нужна срочная помощь?</h2><a class="urgent-number" href="tel:80000000000">8 000 000-00-00</a></div>
@@ -56,22 +62,31 @@
 
 
 <dialog class="doctor-profile" id="anna" aria-labelledby="anna-title">
-  <form method="dialog"><button class="button button-secondary profile-close" type="submit">Закрыть</button></form>
-  <p class="eyebrow">Терапевт</p><h2 id="anna-title">Анна Миронова</h2>
+  <form method="dialog" class="dialog-close-form"><button type="submit" class="dialog-close" aria-label="Закрыть"></button></form>
+  <div class="profile-layout">
+    <img class="profile-portrait" src="assets/vet-anna.jpg" alt="" loading="lazy">
+    <div class="profile-details"><p class="eyebrow">Терапевт</p><h2 id="anna-title">Анна Миронова</h2>
   <p>Проводит первичные осмотры, занимается профилактикой и лечением распространённых заболеваний кошек и собак.</p><dl><dt>Образование</dt><dd>Ветеринарный факультет, специальность «Ветеринария».</dd><dt>Опыт</dt><dd>8 лет в терапии мелких домашних животных.</dd></dl>
-  <small>Данные профиля вымышлены.</small>
+  <small>Данные профиля вымышлены.</small></div>
+  </div>
 </dialog>
 <dialog class="doctor-profile" id="maria" aria-labelledby="maria-title">
-  <form method="dialog"><button class="button button-secondary profile-close" type="submit">Закрыть</button></form>
-  <p class="eyebrow">Врач диагностики</p><h2 id="maria-title">Мария Лебедева</h2>
+  <form method="dialog" class="dialog-close-form"><button type="submit" class="dialog-close" aria-label="Закрыть"></button></form>
+  <div class="profile-layout">
+    <img class="profile-portrait" src="assets/vet-maria.jpg" alt="" loading="lazy">
+    <div class="profile-details"><p class="eyebrow">Врач диагностики</p><h2 id="maria-title">Мария Лебедева</h2>
   <p>Проводит УЗИ и помогает лечащему врачу уточнить причину симптомов.</p><dl><dt>Образование</dt><dd>Высшее ветеринарное образование и дополнительная подготовка по УЗИ.</dd><dt>Опыт</dt><dd>6 лет в ветеринарной диагностике.</dd></dl>
-  <small>Данные профиля вымышлены.</small>
+  <small>Данные профиля вымышлены.</small></div>
+  </div>
 </dialog>
 <dialog class="doctor-profile" id="ilya" aria-labelledby="ilya-title">
-  <form method="dialog"><button class="button button-secondary profile-close" type="submit">Закрыть</button></form>
-  <p class="eyebrow">Хирург</p><h2 id="ilya-title">Илья Соколов</h2>
+  <form method="dialog" class="dialog-close-form"><button type="submit" class="dialog-close" aria-label="Закрыть"></button></form>
+  <div class="profile-layout">
+    <img class="profile-portrait" src="assets/vet-ilya.jpg" alt="" loading="lazy">
+    <div class="profile-details"><p class="eyebrow">Хирург</p><h2 id="ilya-title">Илья Соколов</h2>
   <p>Ведёт плановые операции и наблюдает за восстановлением питомцев после вмешательства.</p><dl><dt>Образование</dt><dd>Ветеринарный факультет, дополнительная подготовка по хирургии.</dd><dt>Опыт</dt><dd>10 лет в хирургии мелких домашних животных.</dd></dl>
-  <small>Данные профиля вымышлены.</small>
+  <small>Данные профиля вымышлены.</small></div>
+  </div>
 </dialog>
 </main><footer><div class="wrap footer-top"><a class="brand brand-light" href="#top"><img class="brand-mark" src="assets/paw-mark.svg" width="30" height="30" alt=""><span>лапка плюс</span></a><p>Ветеринарная клиника для кошек и собак.</p><a href="#top">Наверх</a></div><div class="wrap footer-bottom"><span>© Лапка плюс · Демонстрационный проект</span><div><a href="privacy.html">Политика конфиденциальности</a><a href="consent.html">Согласие на обработку данных</a></div></div></footer>
 <a class="call-float" href="tel:80000000000" aria-label="Позвонить: 8 000 000-00-00"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6.6 2.7 9.3 6a1.5 1.5 0 0 1-.1 2l-1.3 1.3a15 15 0 0 0 6.8 6.8l1.3-1.3a1.5 1.5 0 0 1 2-.1l3.3 2.7a1.5 1.5 0 0 1 .4 1.8l-.8 1.6a2 2 0 0 1-2.1 1.1A19.5 19.5 0 0 1 2.1 5.2a2 2 0 0 1 1.1-2.1l1.6-.8a1.5 1.5 0 0 1 1.8.4Z" fill="currentColor"/></svg><span class="sr-only">Позвонить</span></a></body></html>

@@ -1,37 +1,31 @@
 const toggle = document.querySelector('.menu-toggle');
-const menu = document.querySelector('#mobile-nav');
+const menu = document.querySelector('.menu-drawer');
 
 if (toggle && menu) {
   const mobileLayout = matchMedia('(max-width: 840px)');
-  const isOpen = () => toggle.getAttribute('aria-expanded') === 'true';
 
-  function setMenu(open) {
-    toggle.setAttribute('aria-expanded', String(open));
-    menu.inert = !open;
-  }
-
-  toggle.addEventListener('click', () => setMenu(!isOpen()));
+  toggle.addEventListener('click', () => {
+    menu.showModal();
+    toggle.setAttribute('aria-expanded', 'true');
+  });
+  menu.addEventListener('close', () => toggle.setAttribute('aria-expanded', 'false'));
   menu.addEventListener('click', event => {
-    if (event.target.closest('a')) setMenu(false);
+    if (event.target.closest('a')) menu.close();
   });
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && isOpen()) {
-      toggle.focus();
-      setMenu(false);
-    }
+  mobileLayout.addEventListener('change', event => {
+    if (!event.matches && menu.open) menu.close();
   });
-  document.addEventListener('click', event => {
-    if (isOpen() && !toggle.contains(event.target) && !menu.contains(event.target)) {
-      if (menu.contains(document.activeElement)) toggle.focus();
-      setMenu(false);
-    }
-  });
-  mobileLayout.addEventListener('change', () => setMenu(false));
 }
 
 document.querySelectorAll('.doctor-trigger').forEach(button => {
   const dialog = document.getElementById(button.dataset.profile);
   button.addEventListener('click', () => dialog.showModal());
+});
+
+document.querySelectorAll('.menu-drawer, .doctor-profile').forEach(dialog => {
+  dialog.addEventListener('click', event => {
+    if (event.target === dialog) dialog.close();
+  });
 });
 
 const form = document.querySelector('#booking-form');
