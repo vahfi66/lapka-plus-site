@@ -6,7 +6,7 @@ html {
 .home { --opening-header: var(--sticky-header-height); }
 
 .home .site-header {
-  position: fixed;
+  position: absolute;
   isolation: isolate;
   display: flex;
   justify-content: space-between;
@@ -41,17 +41,30 @@ html {
   background: linear-gradient(90deg, #150d0866, transparent 68%);
 }
 
-.header-photo-strip {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
+.home .site-header.is-floating {
+  position: fixed;
+  inset: max(10px, env(safe-area-inset-top)) 0 auto;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  height: auto;
+  padding: 3px 20px;
+  color: #34251d;
+  background: rgb(255 249 241 / .92);
+  border: 1px solid #b59c8a;
+  border-radius: 14px;
+  box-shadow: 0 5px 18px rgb(44 28 20 / .10);
+  backdrop-filter: blur(10px);
+  animation: floating-nav-enter 180ms var(--ease-out) both;
 }
 
-.header-photo-strip .opening-photo {
-  bottom: auto;
-  height: var(--hero-photo-height, 100svh);
+.site-header.is-floating .brand { display: none; }
+.site-header.is-floating .nav a { display: flex; align-items: center; min-height: 44px; }
+.site-header.is-floating .nav a:hover { color: #83492f; }
+.site-header.is-floating :focus-visible { outline-color: #8c472f; }
+
+@keyframes floating-nav-enter {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: none; }
 }
 
 @media (max-width: 940px) {
@@ -125,6 +138,15 @@ html {
 
 @media (max-width: 840px) {
   .home .site-header { justify-content: space-between; }
+  .home .site-header.is-floating {
+    inset-inline: auto max(14px, env(safe-area-inset-right));
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-header.is-floating .menu-toggle { color: inherit; border-radius: 13px; }
+  .site-header.is-floating .menu-toggle:active,
+  .site-header.is-floating .menu-toggle[aria-expanded="true"] { background-color: #ebddd1; }
   .site-header .menu-toggle { gap: 4px; }
   .site-header .menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(6px) rotate(45deg); }
   .site-header .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(.4); }

@@ -1,16 +1,10 @@
 const header = document.querySelector('.site-header');
-const heroPhoto = document.querySelector('.hero-stage .opening-photo');
+const hero = document.querySelector('.hero-stage');
 
-if (header && heroPhoto) {
-  const photoStrip = document.createElement('div');
-  photoStrip.className = 'header-photo-strip';
-  photoStrip.append(heroPhoto.cloneNode(true));
-  const matchHeroHeight = () => {
-    photoStrip.style.setProperty('--hero-photo-height', `${heroPhoto.getBoundingClientRect().height}px`);
-  };
-  matchHeroHeight();
-  header.prepend(photoStrip);
-  new ResizeObserver(matchHeroHeight).observe(heroPhoto);
+if (header && hero) {
+  new IntersectionObserver(([entry]) => {
+    header.classList.toggle('is-floating', entry.boundingClientRect.bottom <= 0);
+  }).observe(hero);
 }
 
 const toggle = document.querySelector('.menu-toggle');
