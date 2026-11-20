@@ -1,3 +1,12 @@
+const header = document.querySelector('.site-header');
+
+if (header) {
+  const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY >= 28);
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  window.addEventListener('pageshow', updateHeader);
+}
+
 const toggle = document.querySelector('.menu-toggle');
 const menu = document.querySelector('.menu-drawer');
 

@@ -41,15 +41,28 @@ html {
   background: linear-gradient(90deg, #150d0866, transparent 68%);
 }
 
-.site-header::before {
+.site-header::before,
+.site-header::after {
   content: "";
   position: absolute;
-  inset: 0 0 auto;
-  height: calc(var(--opening-header) / 2 + 16px);
+  inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: linear-gradient(180deg, #29221eb8, #29221eaa calc(100% - 7px), transparent);
 }
+
+.site-header::before {
+  bottom: auto;
+  height: calc(var(--opening-header) / 2 + 16px);
+  background: linear-gradient(180deg, rgb(0 0 0 / .38), rgb(0 0 0 / .22) 70%, transparent);
+}
+
+.site-header::after {
+  background: #1b1c1e;
+  opacity: 0;
+  transition: opacity 260ms cubic-bezier(.4, 0, .2, 1);
+}
+
+.site-header.is-scrolled::after { opacity: 1; }
 
 @media (max-width: 940px) {
   .home .site-header { padding-inline: 32px; }
