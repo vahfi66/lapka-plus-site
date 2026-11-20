@@ -7,8 +7,12 @@ if (header && hero) {
   function updateHeader() {
     pending = false;
     const height = header.offsetHeight;
-    const heroBottom = hero.getBoundingClientRect().bottom;
-    const fill = Math.min(1, Math.max(0, (2 * height - heroBottom) / height));
+    const heroBounds = hero.getBoundingClientRect();
+    const fadeEnd = 1.5 * height;
+    const fadeStart = Math.min(4 * height, heroBounds.height);
+    const fadeLength = Math.max(1, fadeStart - fadeEnd);
+    const progress = Math.min(1, Math.max(0, (fadeStart - heroBounds.bottom) / fadeLength));
+    const fill = progress * progress * (3 - 2 * progress);
     header.style.setProperty('--header-fill', fill);
   }
 

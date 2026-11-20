@@ -47,8 +47,9 @@ html {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: #4d3529;
+  background: var(--cocoa);
   opacity: var(--header-fill, 0);
+  transition: opacity 340ms cubic-bezier(.4, 0, .2, 1);
 }
 
 @media (max-width: 940px) {
