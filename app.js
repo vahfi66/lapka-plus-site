@@ -29,6 +29,11 @@ if (toggle && menu) {
   mobileLayout.addEventListener('change', () => setMenu(false));
 }
 
+document.querySelectorAll('.doctor-trigger').forEach(button => {
+  const dialog = document.getElementById(button.dataset.profile);
+  button.addEventListener('click', () => dialog.showModal());
+});
+
 const form = document.querySelector('#booking-form');
 const status = document.querySelector('.form-status');
 const fields = form?.querySelector('fieldset');
@@ -78,4 +83,28 @@ if (form && fields && status) {
 // Android delegates geo links to the user's installed map application.
 if (/Android/i.test(navigator.userAgent)) {
   document.querySelectorAll('.open-maps').forEach(link => { link.href = link.dataset.androidHref; });
+}
+
+const carousel = document.querySelector('.review-carousel');
+if (carousel) {
+  const slides = [...carousel.querySelectorAll('.review-slide')];
+  const dots = [...carousel.querySelectorAll('.review-dot')];
+  let active = 0;
+
+  function showReview(index) {
+    active = (index + slides.length) % slides.length;
+    slides.forEach((slide, position) => {
+      slide.hidden = position !== active;
+      dots[position].setAttribute('aria-current', String(position === active));
+    });
+  }
+
+  carousel.querySelector('.review-prev').addEventListener('click', () => showReview(active - 1));
+  carousel.querySelector('.review-next').addEventListener('click', () => showReview(active + 1));
+  dots.forEach((dot, index) => dot.addEventListener('click', () => showReview(index)));
+  carousel.addEventListener('keydown', event => {
+    if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+    event.preventDefault();
+    showReview(active + (event.key === 'ArrowRight' ? 1 : -1));
+  });
 }
