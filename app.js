@@ -1,13 +1,34 @@
 const toggle = document.querySelector('.menu-toggle');
 const menu = document.querySelector('#mobile-nav');
-toggle?.addEventListener('click', () => {
-  const expanded = toggle.getAttribute('aria-expanded') === 'true';
-  toggle.setAttribute('aria-expanded', String(!expanded));
-  menu.hidden = expanded;
-});
-menu?.addEventListener('click', event => {
-  if (event.target.closest('a')) { menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); }
-});
+
+if (toggle && menu) {
+  const mobileLayout = matchMedia('(max-width: 840px)');
+  const isOpen = () => toggle.getAttribute('aria-expanded') === 'true';
+
+  function setMenu(open) {
+    toggle.setAttribute('aria-expanded', String(open));
+    menu.inert = !open;
+  }
+
+  toggle.addEventListener('click', () => setMenu(!isOpen()));
+  menu.addEventListener('click', event => {
+    if (event.target.closest('a')) setMenu(false);
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && isOpen()) {
+      toggle.focus();
+      setMenu(false);
+    }
+  });
+  document.addEventListener('click', event => {
+    if (isOpen() && !toggle.contains(event.target) && !menu.contains(event.target)) {
+      if (menu.contains(document.activeElement)) toggle.focus();
+      setMenu(false);
+    }
+  });
+  mobileLayout.addEventListener('change', () => setMenu(false));
+}
+
 const form = document.querySelector('#booking-form');
 const status = document.querySelector('.form-status');
 const fields = form?.querySelector('fieldset');
