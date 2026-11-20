@@ -2,9 +2,27 @@ const header = document.querySelector('.site-header');
 const hero = document.querySelector('.hero-stage');
 
 if (header && hero) {
-  new IntersectionObserver(([entry]) => {
-    header.classList.toggle('is-floating', entry.boundingClientRect.bottom <= 0);
-  }).observe(hero);
+  let pending = false;
+
+  function updateHeader() {
+    pending = false;
+    const height = header.offsetHeight;
+    const heroBottom = hero.getBoundingClientRect().bottom;
+    const fill = Math.min(1, Math.max(0, (2 * height - heroBottom) / height));
+    header.style.setProperty('--header-fill', fill);
+  }
+
+  function scheduleHeaderUpdate() {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(updateHeader);
+  }
+
+  updateHeader();
+  window.addEventListener('scroll', scheduleHeaderUpdate, { passive: true });
+  const headerResize = new ResizeObserver(scheduleHeaderUpdate);
+  headerResize.observe(header);
+  headerResize.observe(hero);
 }
 
 const toggle = document.querySelector('.menu-toggle');
