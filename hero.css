@@ -90,9 +90,14 @@ html {
 }
 
 .hero-stage .lead {
-  margin: 14px 0 28px;
+  margin: 14px 0 5px;
   color: inherit;
   font-size: clamp(17px, 1.7vw, 24px);
+}
+
+.hero-stage .hero-location {
+  margin: 0 0 24px;
+  font-size: 14px;
 }
 
 .hero-stage .action {
@@ -134,7 +139,8 @@ html {
 
   .hero-stage .copy { padding-block: clamp(180px, 42svh, 420px) max(24px, env(safe-area-inset-bottom)); }
   .hero-stage h1 { font-size: clamp(28px, 9vw, 56px); }
-  .hero-stage .lead { margin: 10px 0 16px; }
+  .hero-stage .lead { margin: 10px 0 4px; }
+  .hero-stage .hero-location { margin-bottom: 14px; }
   .hero-stage .actions { flex-direction: column; align-items: flex-start; gap: 4px; }
   .hero-stage .secondary { padding-inline: 0; text-decoration: none; }
 }
