@@ -41,25 +41,14 @@ html {
   background: linear-gradient(90deg, #150d0866, transparent 68%);
 }
 
-.site-header::before,
-.site-header::after {
+.site-header::before {
   content: "";
   position: absolute;
   inset: 0 0 auto;
-  height: calc(100% + 42px);
+  height: calc(var(--opening-header) / 2 + 16px);
   z-index: -1;
   pointer-events: none;
-}
-
-.site-header::before {
-  background: linear-gradient(180deg, #1b120e40, #1b120e24 40%, transparent 100%);
-}
-
-.site-header::after {
-  background: linear-gradient(180deg,
-    #29221ecc 0%, #29221eb3 40%, #29221e59 66%, transparent 100%);
-  opacity: var(--header-fill, 0);
-  transition: opacity 340ms cubic-bezier(.4, 0, .2, 1);
+  background: linear-gradient(180deg, #29221eb8, #29221eaa calc(100% - 7px), transparent);
 }
 
 @media (max-width: 940px) {

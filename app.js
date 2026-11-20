@@ -1,34 +1,3 @@
-const header = document.querySelector('.site-header');
-const hero = document.querySelector('.hero-stage');
-
-if (header && hero) {
-  let pending = false;
-
-  function updateHeader() {
-    pending = false;
-    const height = header.offsetHeight;
-    const heroBounds = hero.getBoundingClientRect();
-    const fadeEnd = 1.5 * height;
-    const fadeStart = Math.min(4 * height, heroBounds.height);
-    const fadeLength = Math.max(1, fadeStart - fadeEnd);
-    const progress = Math.min(1, Math.max(0, (fadeStart - heroBounds.bottom) / fadeLength));
-    const fill = progress * progress * (3 - 2 * progress);
-    header.style.setProperty('--header-fill', fill);
-  }
-
-  function scheduleHeaderUpdate() {
-    if (pending) return;
-    pending = true;
-    requestAnimationFrame(updateHeader);
-  }
-
-  updateHeader();
-  window.addEventListener('scroll', scheduleHeaderUpdate, { passive: true });
-  const headerResize = new ResizeObserver(scheduleHeaderUpdate);
-  headerResize.observe(header);
-  headerResize.observe(hero);
-}
-
 const toggle = document.querySelector('.menu-toggle');
 const menu = document.querySelector('.menu-drawer');
 
