@@ -601,7 +601,7 @@ body:has(.menu-drawer[open], .doctor-profile[open]) { overflow: hidden; }
 }
 .menu-drawer-content nav a:focus-visible { outline-offset: -3px; }
 .menu-drawer-content nav a:hover, .menu-drawer-content nav a:active { background: #f5ebe3; }
-.menu-drawer-content nav a:last-child {
+.menu-drawer-content nav a[href="#appointment"] {
   justify-content: center;
   margin-top: 20px;
   border: 0;
@@ -609,7 +609,7 @@ body:has(.menu-drawer[open], .doctor-profile[open]) { overflow: hidden; }
   background: var(--coffee);
   color: #fffaf5;
 }
-.menu-drawer-content nav a:last-child:hover { background: #604233; }
+.menu-drawer-content nav a[href="#appointment"]:hover { background: #604233; }
 
 @media (max-width: 510px) {
   .profile-layout { grid-template-columns: minmax(0,1fr); }

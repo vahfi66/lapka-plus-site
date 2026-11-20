@@ -1,8 +1,45 @@
+html {
+  --sticky-header-height: 82px;
+  scroll-padding-top: var(--sticky-header-height);
+}
+
+.home { --opening-header: var(--sticky-header-height); }
+
 .home .site-header {
+  position: fixed;
+  isolation: isolate;
   display: flex;
-  justify-content: flex-start;
-  gap: clamp(40px, 6vw, 96px);
+  justify-content: space-between;
+  gap: clamp(20px, 3vw, 56px);
+  width: 100%;
+  padding-inline: max(56px, calc((100% - 1320px) / 2));
   border-bottom: 0;
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(#1a100b60, #1a100b60),
+    url("assets/hero-dog-desktop.webp") left center / 260% auto no-repeat #29221e;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+.site-header.is-scrolled::before { opacity: 1; }
+
+@media (max-width: 940px) {
+  .home .site-header { padding-inline: 32px; }
+}
+
+@media (max-width: 840px) {
+  html { --sticky-header-height: 62px; }
+}
+
+@media (max-width: 700px) {
+  .home .site-header { padding-inline: 20px; }
 }
 
 .home .site-header .brand {
@@ -12,7 +49,9 @@
 
 .site-header .nav {
   margin: 0;
+  gap: clamp(12px, 1.8vw, 28px);
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .hero-stage { color: #fff8ed; }
@@ -67,6 +106,7 @@
 }
 
 @media (max-width: 680px) {
+  .site-header::before { background-image: linear-gradient(#1a100b60, #1a100b60), url("assets/hero-dog-mobile.webp"); background-position: left 88%; }
   .hero-stage .image img { object-position: 76% 0; }
   .hero-stage::before {
     background: linear-gradient(180deg, #170e0880, transparent 15% 46%, #170e084d 68%, #170e0873);
@@ -81,4 +121,9 @@
 
 @media (max-width: 680px) and (max-height: 640px) {
   .hero-stage .copy { padding-top: 130px; }
+}
+
+@media (841px <= width <= 1020px) {
+  .home .site-header { gap: 18px; padding-inline: 26px; }
+  .site-header .nav { gap: 12px; font-size: 13px; }
 }

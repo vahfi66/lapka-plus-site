@@ -9,19 +9,35 @@
   <link rel="preload" href="assets/geologica-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="fonts.css?v=2"><link rel="stylesheet" href="styles.css?v=9"><link rel="stylesheet" href="hero.css?v=2"><script src="app.js?v=8" defer></script>
+  <link rel="stylesheet" href="fonts.css?v=2"><link rel="stylesheet" href="styles.css?v=10"><link rel="stylesheet" href="hero.css?v=3"><script src="app.js?v=9" defer></script>
 </head>
 <body class="home final-design" id="top">
 <a class="skip" href="#main">Перейти к содержанию</a>
 <header class="header wrap site-header">
   <a class="brand" href="#top" aria-label="Лапка плюс — на главную">Лапка плюс</a>
-  <nav class="nav" aria-label="Основная навигация"><a href="#doctors">Врачи</a><a href="#services">Услуги</a><a href="#contacts">Контакты</a></nav>
+  <nav class="nav" aria-label="Основная навигация">
+      <a href="#doctors">Врачи</a>
+      <a href="#services">Услуги и цены</a>
+      <a href="#visit">План приёма</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#emergency">Срочная помощь</a>
+      <a href="#appointment">Записаться</a>
+      <a href="#contacts">Как нас найти</a>
+    </nav>
   <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-haspopup="dialog"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><span class="sr-only">Меню</span></button>
   <dialog class="menu-drawer" id="mobile-nav" aria-labelledby="mobile-menu-title">
     <div class="menu-drawer-content">
       <form method="dialog" class="dialog-close-form"><button type="submit" class="dialog-close" aria-label="Закрыть"></button></form>
       <h2 id="mobile-menu-title">Меню</h2>
-      <nav aria-label="Мобильная навигация"><a href="#doctors">Врачи</a><a href="#services">Услуги и цены</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a><a href="#appointment">Записаться</a></nav>
+      <nav aria-label="Мобильная навигация">
+      <a href="#doctors">Врачи</a>
+      <a href="#services">Услуги и цены</a>
+      <a href="#visit">План приёма</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#emergency">Срочная помощь</a>
+      <a href="#appointment">Записаться</a>
+      <a href="#contacts">Как нас найти</a>
+    </nav>
     </div>
   </dialog>
 </header>
@@ -33,7 +49,7 @@
 </picture>
 <div class="copy">
 <h1 id="hero-title"><span>Ему легче,</span> <span>вам спокойней</span></h1>
-<p class="lead">Принимаем кошек и собак.</p>
+<p class="lead">Принимаем кошек и собак круглосуточно.</p>
 <div class="actions"><a class="action primary" href="#appointment">Записаться</a><a class="action secondary" href="#emergency">Срочная помощь</a></div>
 </div>
 </div></section>
@@ -66,7 +82,7 @@
 <section class="concept-block booking-chapter" id="appointment" tabindex="-1"><div class="editorial-wrap booking-layout"><div class="booking-meta"><p class="eyebrow">ЗАЯВКА НА ПРИЁМ</p><h2>Выберите удобное время</h2><p class="appointment-intro">Выберите удобные дату и время и оставьте заявку.</p><div class="appointment-note"><strong>Ночной тариф 1,5×</strong><p>С 20:00 включительно до 08:00 по местному времени. В 08:00 начинается дневной тариф.</p></div></div><div class="form-card"><div class="form-status" role="status" hidden></div><form id="booking-form" novalidate><fieldset disabled><div class="form-grid"><label>Ваше имя<input name="name" autocomplete="name" placeholder="Как к вам обращаться" required minlength="2" maxlength="80"></label><label>Телефон<input name="phone" type="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required minlength="10" maxlength="25"></label><label>Питомец<select name="pet" required><option value="">Выберите питомца</option><option>Кошка</option><option>Собака</option></select></label><label>Услуга<select name="service" required><option value="">Выберите услугу</option><option>Приём терапевта</option><option>Диагностика</option><option>Вакцинация</option><option>Хирургия</option><option>Стоматология</option></select></label><label>Желаемая дата<input name="date" type="date" required></label><label>Желаемое время<input name="time" type="time" required></label><label class="full">Комментарий <span>необязательно</span><textarea name="note" rows="2" maxlength="500" placeholder="Что нам стоит знать?"></textarea></label><label class="check full"><input type="checkbox" name="consent" required><span>Я даю <a href="consent.html">согласие на обработку персональных данных</a></span></label><p class="form-privacy full">Подробнее — в <a href="privacy.html">политике конфиденциальности</a>.</p><button class="concept-button full" type="submit">Записаться</button></div></fieldset></form><p class="form-foot">В срочной ситуации обратитесь в действующую клинику.</p></div></div></section>
 <section id="contacts" class="concept-block location-chapter"><div class="editorial-wrap">
 <header class="concept-heading"><div><p class="eyebrow">КОНТАКТЫ</p><h2>Как нас найти</h2></div><p>Адрес, часы работы и телефон.</p></header>
-<div class="location-layout"><div class="contact-details"><div><span>АДРЕС</span><p>Москва, Центральный район</p><small>Условный адрес</small></div><div><span>РЕЖИМ РАБОТЫ</span><p>Круглосуточно, 24/7</p></div><div><span>ТЕЛЕФОН</span><p><a href="tel:80000000000">8 000 000-00-00</a></p></div></div><div class="map-panel map-simple"><div class="map-description"><span class="map-label">КАРТА</span><h3>Московский Кремль</h3><p>Условная точка на карте, не адрес клиники.</p></div><a class="concept-button open-maps" href="https://yandex.ru/maps/?pt=37.617635%2C55.752023&amp;z=15" data-android-href="geo:55.752023,37.617635?q=55.752023,37.617635(Московский%20Кремль)">Открыть карты</a><img class="map-art" src="assets/map-pattern.svg" alt="" width="560" height="180" loading="lazy"></div></div>
+<div class="location-layout"><div class="contact-details"><div><span>АДРЕС</span><p>Москва, Центральный район</p><small>Условный адрес</small></div><div><span>РЕЖИМ РАБОТЫ</span><p>Круглосуточно, 24/7</p></div><div><span>ТЕЛЕФОН</span><p><a href="tel:80000000000">8 000 000-00-00</a></p></div><div><span>ТЕЛЕФОН ДЛЯ СОТРУДНИЧЕСТВА</span><p><a href="tel:80000000001">8 000 000-00-01</a></p></div></div><div class="map-panel map-simple"><div class="map-description"><span class="map-label">КАРТА</span><h3>Московский Кремль</h3><p>Условная точка на карте, не адрес клиники.</p></div><a class="concept-button open-maps" href="https://yandex.ru/maps/?pt=37.617635%2C55.752023&amp;z=15" data-android-href="geo:55.752023,37.617635?q=55.752023,37.617635(Московский%20Кремль)">Открыть карты</a><img class="map-art" src="assets/map-pattern.svg" alt="" width="560" height="180" loading="lazy"></div></div>
 </div></section>
 
 
