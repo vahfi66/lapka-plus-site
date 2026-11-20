@@ -17,7 +17,7 @@
 
 a.service-card {
   text-decoration: none;
-  transition: transform 160ms var(--ease-out), background-color 150ms ease, border-color 150ms ease;
+  transition: transform 200ms var(--ease-out), background-color 180ms ease, border-color 180ms ease;
 }
 
 a.service-card:focus-visible {
@@ -29,7 +29,7 @@ a.service-card:focus-visible {
 .button,
 .header-cta,
 .call-float {
-  transition: transform 150ms var(--ease-out), background-color 150ms ease, border-color 150ms ease;
+  transition: transform 180ms var(--ease-out), background-color 180ms ease, border-color 180ms ease;
 }
 
 .button:not(:disabled):active,
@@ -40,13 +40,12 @@ a.service-card:focus-visible {
 
 .nav a {
   padding-block: 10px;
-  text-underline-offset: 5px;
+  transition: color 160ms ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .nav a:hover { text-decoration: underline; }
   a.service-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     background-color: #f2dcc9;
     border-color: var(--accent);
   }
@@ -93,7 +92,7 @@ a.service-card.is-pressed {
     height: 2px;
     border-radius: 1px;
     background-color: currentColor;
-    transition: transform 200ms var(--ease-morph);
+    transition: transform 230ms var(--ease-morph), opacity 150ms ease;
   }
 
   .menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(4px) rotate(45deg); }
@@ -164,7 +163,7 @@ a.service-card.is-pressed {
   z-index: -1;
   background: linear-gradient(90deg, #29221e 12%, #29221e 29%, #29221eec 36%, #29221e96 49%, #29221e00 70%), linear-gradient(180deg, #29221ecd, transparent 23%);
 }
-.hero-stage .copy { padding-block: 42px 65px; animation: hero-appear .48s var(--ease-out) both; }
+.hero-stage .copy { padding-block: 42px 65px; }
 .hero-stage .kicker { margin: 0; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
 .hero-stage h1 { margin: 22px 0 0; font: 800 clamp(55px, 6.8vw, 108px)/1 Manrope, Arial, sans-serif; letter-spacing: -.055em; }
 .hero-stage h1 span { display: block; }
@@ -183,14 +182,14 @@ a.service-card.is-pressed {
   border: 1px solid transparent;
   border-radius: 6px;
   white-space: nowrap;
-  transition: transform .15s var(--ease-out), background-color .15s ease;
+  transition: transform 180ms var(--ease-out), background-color 180ms ease, color 160ms ease;
 }
 .hero-stage .primary { background: var(--peach); color: #302119; }
 .hero-stage .secondary { border-color: #fff8f3a3; }
 .hero-stage .action:active { transform: scale(.98); }
 .hero-stage :focus-visible, .site-header :focus-visible, .emergency :focus-visible, footer :focus-visible { outline-color: var(--peach); }
 
-@keyframes hero-appear { from { opacity: .35; transform: translateY(9px); } to { opacity: 1; transform: none; } }
+
 
 .section h2, .approach h2, .emergency h2, .appointment h2, .doctor-profile h2 { font-family: Manrope, Arial, sans-serif; font-weight: 800; }
 .service-card, .doctor-card, .review-grid article, .map-panel { border-color: var(--line); }
@@ -213,7 +212,7 @@ footer .brand-mark { width: 30px; height: 30px; }
 .footer-top p, .footer-bottom { color: #eee0d2; }
 .demo-bar { text-align: center; padding: 8px 16px; font-size: 12px; background: var(--surface); }
 
-.doctor-card { position: relative; transition: border-color .15s ease, background-color .15s ease; }
+.doctor-card { position: relative; transition: border-color 200ms ease, background-color 200ms ease; }
 .doctor-card:focus-within { outline: 2px solid var(--accent); outline-offset: 3px; }
 .doctor-trigger {
   min-height: 44px;
@@ -225,8 +224,7 @@ footer .brand-mark { width: 30px; height: 30px; }
   color: var(--accent);
   font-weight: 600;
   font-size: 14px;
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  text-decoration: none;
 }
 .doctor-trigger::after { content: ""; position: absolute; inset: 0; }
 .doctor-profile h2 { margin: 0; font-size: clamp(26px, 5vw, 36px); line-height: 1.15; }
@@ -237,7 +235,7 @@ footer .brand-mark { width: 30px; height: 30px; }
 
 
 @media (hover: hover) and (pointer: fine) {
-  .site-header .nav a:hover, .header-action:hover { color: inherit; text-decoration: underline; }
+  .site-header .nav a:hover, .header-action:hover { color: #f5bb96; }
   .hero-stage .action:hover { transform: translateY(-2px); }
   .hero-stage .primary:hover, .call-float:hover { background: #fac8a5; }
   .hero-stage .action:active:hover { transform: scale(.98); }
@@ -281,7 +279,7 @@ footer .brand-mark { width: 30px; height: 30px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-stage .copy { animation: none; }
+
 }
 
 /* Light colorway approved in the reference mockup. */
@@ -336,7 +334,7 @@ body { background: var(--page); font-family: var(--body-font); }
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
-  transition: background-color 160ms ease, transform 150ms var(--ease-out);
+  transition: background-color 180ms ease, transform 180ms var(--ease-out);
 }
 .final-design .concept-button:active { transform: scale(.98); }
 .final-design .concept-button svg { width: 17px; height: 17px; }
@@ -355,7 +353,7 @@ body { background: var(--page); font-family: var(--body-font); }
   height: auto;
   background: #dfd4cc;
 }
-.final-design .team .portrait img { position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: center 29%; }
+.final-design .team .portrait img { position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: center 29%; transition: transform 320ms var(--ease-out); }
 .final-design .team .doctor-card:nth-child(2) img { object-position: center 28%; }
 .final-design .team .doctor-card:nth-child(3) img { object-position: center 30%; }
 .final-design .team .doctor-info { padding: 15px 19px 5px; }
@@ -420,20 +418,21 @@ body { background: var(--page); font-family: var(--body-font); }
 .final-design .review-deck { display: grid; }
 .final-design .review-slide { grid-area: 1/1; display: grid; align-content: center; gap: 7px; }
 .final-design .review-slide[hidden] { display: grid; visibility: hidden; pointer-events: none; }
-.final-design .review-slide:not([hidden]) { animation: review-arrive .22s var(--ease-out) both; }
+.final-design .review-carousel[data-changing] .review-slide:not([hidden]) { animation: review-arrive 260ms var(--ease-out) both; }
 .final-design .review-slide blockquote { margin: 0; font-size: clamp(15px,1.4vw,20px); max-width: 60ch; }
 .final-design .review-slide p { margin: 0; font-size: 13px; color: var(--muted); }
 .final-design .review-stars { color: #82563e; margin: 0; }
 .final-design .review-controls,.final-design .review-dots { display: flex; align-items: center; }
 .final-design .review-controls { gap: 10px; }
 .final-design .review-arrow,.final-design .review-dot { display: grid; place-items: center; min-width: 44px; min-height: 44px; padding: 0; background: none; color: var(--coffee); }
-.final-design .review-arrow { border: 1px solid #a58674; border-radius: 6px; }
+.final-design .review-arrow { border: 1px solid #a58674; border-radius: 6px; transition: background-color 180ms ease, transform 180ms var(--ease-out); }
+.final-design .review-arrow:active { transform: scale(.96); }
 .final-design .review-arrow svg { width: 18px; height: 18px; }
 .final-design .review-next svg { transform: rotate(180deg); }
 .final-design .review-dot { min-width: 40px; border: 0; }
-.final-design .review-dot::after { content: ""; width: 7px; height: 7px; border: 1px solid #8c6855; border-radius: 50%; }
-.final-design .review-dot[aria-current=true]::after { background: #8c614a; }
-@keyframes review-arrive { from { opacity: .55; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.final-design .review-dot::after { content: ""; width: 7px; height: 7px; border: 1px solid #8c6855; border-radius: 50%; transition: background-color 180ms ease, transform 180ms var(--ease-out); }
+.final-design .review-dot[aria-current=true]::after { background: #8c614a; transform: scale(1.25); }
+@keyframes review-arrive { from { opacity: .35; transform: translateX(var(--review-offset, 8px)); } to { opacity: 1; transform: none; } }
 
 .final-design .urgent-chapter { padding-block: 8px 34px; }
 .final-design .urgent-frame { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px 22px; padding: 18px 26px; border-radius: 10px; background: #3e2b22; color: #fff8f1; }
@@ -464,10 +463,11 @@ body { background: var(--page); font-family: var(--body-font); }
 .final-design footer .footer-bottom { border-color: var(--line); margin-top: 22px; }
 
 @media (hover:hover) and (pointer:fine) {
+  .final-design .team .doctor-card:hover .portrait img { transform: scale(1.025); }
   .final-design .concept-button:hover { background: #644533; }
   .final-design .urgent-frame .concept-button:hover { background: #594034; }
   .final-design .map-simple .concept-button:hover,.final-design .review-arrow:hover { background: #f2e7de; }
-  .final-design .price-list a.service-card:hover { background: #eaddd3; border-color: #9e7962; transform: translateY(-3px); }
+  .final-design .price-list a.service-card:hover { background: #eaddd3; border-color: #9e7962; transform: translateY(-2px); }
   .final-design .price-list a.service-card:first-child:hover { background: #79513b; }
 }
 .final-design .price-list a.service-card:active,.final-design .price-list a.service-card.is-pressed { transform: scale(.985); }
@@ -496,13 +496,15 @@ body { background: var(--page); font-family: var(--body-font); }
   .final-design .map-simple { grid-template-columns: minmax(0,1fr); justify-items: start; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .final-design .review-slide:not([hidden]) { animation: none; }
+  .final-design .review-carousel[data-changing] .review-slide:not([hidden]) { animation: none; }
+  .final-design .team .doctor-card:hover .portrait img { transform: none; }
 }
 
 /* Native dialogs with a short transition into and out of the top layer. */
 .menu-drawer, .doctor-profile {
-  --dialog-speed: 290ms;
-  --dialog-offset: translateY(9px) scale(.98);
+  --dialog-speed: 180ms;
+  --dialog-open-speed: 310ms;
+  --dialog-offset: translateY(12px) scale(.975);
   border: 1px solid #cfbfb3;
   background: var(--paper);
   color: var(--ink);
@@ -510,10 +512,10 @@ body { background: var(--page); font-family: var(--body-font); }
   opacity: 0;
   transform: var(--dialog-offset);
   overscroll-behavior: contain;
-  transition: opacity 200ms ease, transform var(--dialog-speed) var(--ease-out),
+  transition: opacity var(--dialog-speed) ease, transform var(--dialog-speed) var(--ease-out),
     display var(--dialog-speed) allow-discrete, overlay var(--dialog-speed) allow-discrete;
 }
-.menu-drawer[open], .doctor-profile[open] { opacity: 1; transform: none; }
+.menu-drawer[open], .doctor-profile[open] { --dialog-speed: var(--dialog-open-speed); opacity: 1; transform: none; }
 .menu-drawer::backdrop, .doctor-profile::backdrop {
   background: transparent;
   transition: background-color var(--dialog-speed) ease, display var(--dialog-speed) allow-discrete, overlay var(--dialog-speed) allow-discrete;
@@ -566,7 +568,8 @@ body:has(.menu-drawer[open], .doctor-profile[open]) { overflow: hidden; }
 .profile-details small { display: block; font-size: 12px; }
 
 .menu-drawer {
-  --dialog-speed: 320ms;
+  --dialog-speed: 220ms;
+  --dialog-open-speed: 340ms;
   --dialog-offset: translateX(100%);
   max-width: none;
   max-height: none;
@@ -594,6 +597,7 @@ body:has(.menu-drawer[open], .doctor-profile[open]) { overflow: hidden; }
   text-decoration: none;
   font-size: 16px;
   font-weight: 550;
+  transition: background-color 180ms ease;
 }
 .menu-drawer-content nav a:focus-visible { outline-offset: -3px; }
 .menu-drawer-content nav a:hover, .menu-drawer-content nav a:active { background: #f5ebe3; }

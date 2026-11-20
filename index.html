@@ -5,15 +5,18 @@
   <meta name="description" content="Лапка плюс — демонстрационный сайт ветеринарной клиники для кошек и собак.">
   <meta name="page-type" content="service"><meta name="site-kind" content="other"><title>Лапка плюс — ветеринарная клиника</title>
   <link rel="icon" href="assets/paw-mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="fonts.css"><link rel="stylesheet" href="styles.css?v=8"><script src="app.js?v=7" defer></script>
+  <link rel="preload" href="assets/geologica-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/geologica-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css?v=2"><link rel="stylesheet" href="styles.css?v=9"><link rel="stylesheet" href="hero.css?v=2"><script src="app.js?v=8" defer></script>
 </head>
 <body class="home final-design" id="top">
 <a class="skip" href="#main">Перейти к содержанию</a>
 <header class="header wrap site-header">
-  <a class="brand" href="#top" aria-label="Лапка плюс — на главную"><img class="brand-mark" src="assets/paw-mark.svg" width="30" height="30" alt=""><span>лапка плюс</span></a>
-  <nav class="nav" aria-label="Основная навигация"><a href="#doctors">Врачи</a><a href="#services">Услуги и цены</a><a href="#reviews">Отзывы</a></nav>
-  <a class="header-action" href="#contacts">Контакты</a>
-  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-haspopup="dialog"><span aria-hidden="true"></span><span aria-hidden="true"></span><span class="sr-only">Меню</span></button>
+  <a class="brand" href="#top" aria-label="Лапка плюс — на главную">Лапка плюс</a>
+  <nav class="nav" aria-label="Основная навигация"><a href="#doctors">Врачи</a><a href="#services">Услуги</a><a href="#contacts">Контакты</a></nav>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-haspopup="dialog"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><span class="sr-only">Меню</span></button>
   <dialog class="menu-drawer" id="mobile-nav" aria-labelledby="mobile-menu-title">
     <div class="menu-drawer-content">
       <form method="dialog" class="dialog-close-form"><button type="submit" class="dialog-close" aria-label="Закрыть"></button></form>
@@ -24,9 +27,15 @@
 </header>
 <main id="main">
 <section class="hero-stage" aria-labelledby="hero-title"><div class="hero wrap">
-<figure class="image"><img src="assets/clinic-cat.webp" alt="Белый кот на ветеринарном осмотре" fetchpriority="high"></figure><div class="copy reveal"><p class="kicker">Ветеринарная клиника · Москва</p>
-<h1 id="hero-title"><span>Ему легче,</span> <span>вам спокойней</span></h1><p class="lead">Принимаем кошек и собак. Внимательно осмотрим питомца, подберём лечение и расскажем, по каким признакам вы заметите улучшение.</p>
-<div class="actions"><a class="action primary" href="#appointment">Записаться</a><a class="action secondary" href="#emergency">Срочная помощь</a></div></div>
+<picture class="image">
+  <source media="(max-width: 680px)" srcset="assets/hero-dog-mobile.webp">
+  <img src="assets/hero-dog-desktop.webp" alt="" width="1774" height="887" fetchpriority="high">
+</picture>
+<div class="copy">
+<h1 id="hero-title"><span>Ему легче,</span> <span>вам спокойней</span></h1>
+<p class="lead">Принимаем кошек и собак.</p>
+<div class="actions"><a class="action primary" href="#appointment">Записаться</a><a class="action secondary" href="#emergency">Срочная помощь</a></div>
+</div>
 </div></section>
 <section id="doctors" class="concept-block team"><div class="editorial-wrap"><header class="concept-heading"><div><p class="eyebrow">ВРАЧИ</p><h2>Врачи клиники</h2></div><p>Специалисты клиники и направления их работы.</p></header>
 <div class="team-layout">

@@ -86,6 +86,9 @@ if (carousel) {
   let active = 0;
 
   function showReview(index) {
+    if (index === active) return;
+    carousel.dataset.changing = '';
+    carousel.style.setProperty('--review-offset', index > active ? '8px' : '-8px');
     active = (index + slides.length) % slides.length;
     slides.forEach((slide, position) => {
       slide.hidden = position !== active;

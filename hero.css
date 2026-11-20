@@ -1,0 +1,84 @@
+.home .site-header {
+  display: flex;
+  justify-content: flex-start;
+  gap: clamp(40px, 6vw, 96px);
+  border-bottom: 0;
+}
+
+.home .site-header .brand {
+  font: 700 clamp(21px, 2.2vw, 30px)/1 var(--heading-font);
+  letter-spacing: -.045em;
+}
+
+.site-header .nav {
+  margin: 0;
+  font-weight: 500;
+}
+
+.hero-stage { color: #fff8ed; }
+.hero-stage .image { inset: 0; }
+.hero-stage .image img { object-position: 100% 48%; }
+.hero-stage::before { background: linear-gradient(90deg, #150d0866, transparent 68%); }
+.hero-stage .hero { align-items: end; }
+.hero-stage .copy { padding-block: 44px clamp(60px, 11vh, 116px); }
+
+.hero-stage h1 {
+  margin: 0;
+  font-size: clamp(42px, 5.6vw, 86px);
+  line-height: 1.03;
+  letter-spacing: -.05em;
+}
+
+.hero-stage .lead {
+  margin: 14px 0 28px;
+  color: inherit;
+  font-size: clamp(17px, 1.7vw, 24px);
+}
+
+.hero-stage .action {
+  min-height: 48px;
+  font: 500 14px/1.2 Inter, Arial, sans-serif;
+}
+
+.hero-stage .primary {
+  min-width: 150px;
+  padding-inline: 24px;
+  background: #f4e9d7;
+  color: #2e211a;
+}
+
+.hero-stage .secondary {
+  padding-inline: 10px;
+  border-color: transparent;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .hero-stage .primary:hover { background: #fff8ed; }
+  .hero-stage .secondary:hover { color: #f5bb96; }
+}
+
+@media (max-width: 840px) {
+  .home .site-header { justify-content: space-between; }
+  .site-header .menu-toggle { gap: 4px; }
+  .site-header .menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(6px) rotate(45deg); }
+  .site-header .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(.4); }
+  .site-header .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+}
+
+@media (max-width: 680px) {
+  .hero-stage .image img { object-position: 76% 0; }
+  .hero-stage::before {
+    background: linear-gradient(180deg, #170e0880, transparent 15% 46%, #170e084d 68%, #170e0873);
+  }
+
+  .hero-stage .copy { padding-block: clamp(180px, 42svh, 420px) max(24px, env(safe-area-inset-bottom)); }
+  .hero-stage h1 { font-size: clamp(28px, 9vw, 56px); }
+  .hero-stage .lead { margin: 10px 0 16px; }
+  .hero-stage .actions { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .hero-stage .secondary { padding-inline: 0; text-decoration: none; }
+}
+
+@media (max-width: 680px) and (max-height: 640px) {
+  .hero-stage .copy { padding-top: 130px; }
+}
