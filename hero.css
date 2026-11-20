@@ -57,7 +57,7 @@ html {
 }
 
 .site-header::after {
-  background: #1b1c1e;
+  background: #211713;
   opacity: 0;
   transition: opacity 260ms cubic-bezier(.4, 0, .2, 1);
 }
