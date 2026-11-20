@@ -36,6 +36,21 @@ const storageKey = 'lapka-demo-appointment';
 let saved = null;
 try { saved = JSON.parse(localStorage.getItem(storageKey) || 'null'); } catch {}
 if (form && fields && status) {
+  const service = form.elements.namedItem('service');
+
+  document.querySelectorAll('.service-card[data-service]').forEach(link => {
+    link.addEventListener('click', event => {
+      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+      service.value = link.dataset.service;
+
+      if (event.pointerType === 'touch') {
+        link.classList.add('is-pressed');
+        setTimeout(() => link.classList.remove('is-pressed'), 160);
+      }
+    });
+  });
+
   const cancel = document.createElement('button');
   cancel.type = 'button'; cancel.className = 'button button-secondary';
   cancel.textContent = 'Отозвать запись'; form.after(cancel);
